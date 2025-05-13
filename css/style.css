@@ -1034,6 +1034,79 @@ button:hover {
 .testimonials-container p {
     margin-bottom: 1.5rem; /* Adiciona um espaço maior abaixo de cada parágrafo */
 }
+/* Testimonials Section */
+.testimonials {
+    padding: 6rem 4rem;
+    background-color: #111111;
+    color: #ffffff;
+    text-align: center;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #ff0000;
+    margin-bottom: 0.5rem;
+}
+
+.section-header .red-line {
+    width: 50px;
+    height: 4px;
+    background-color: #ff0000;
+    margin: 0.5rem auto;
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.testimonial-card {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    position: relative;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-quote {
+    font-size: 2rem;
+    color: #ff0000;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #ccc;
+}
+
+.testimonial-author h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-author p {
+    font-size: 0.9rem;
+    color: #ff0000;
+}
+
+/* Responsive Design */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -1118,7 +1191,14 @@ button:hover {
     .testimonial-card {
         padding: 2rem 1.5rem;
     }
+    .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .testimonial-card {
+        max-width: 90%;
+    }
     .story-timeline::before {
         left: 20px;
     }
