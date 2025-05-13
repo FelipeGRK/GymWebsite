@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="499x500" href="./photos/logo.png">
+    <title>About Iron Forge - Premium Fitness Experience</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./photos/logo.png" alt="Iron Forge Logo" class="logo-img">
+                <h1>IRON FORGE</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="#" class="active">About</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggleBtn = document.querySelector('.menu-toggle');
+                const navLinks = document.querySelector('.nav-links');
+                toggleBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-open');
+                });
+
+                // Navbar background change on scroll
+                window.addEventListener('scroll', () => {
+                    const navbar = document.querySelector('.navbar');
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+
+                // Animate counters
+                function animateCounters() {
+                    const counters = document.querySelectorAll('.counter-value');
+                    
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-count'));
+                        const duration = 2000; // 2 seconds
+                        const step = Math.ceil(target / (duration / 16)); // 60fps approx
+                        
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += step;
+                            counter.textContent = current;
+                            
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            }
+                        }, 16);
+                    });
+                }
+
+                // Observer for counters
+                const counterSection = document.querySelector('.achievements');
+                if (counterSection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            animateCounters();
+                            observer.disconnect();
+                        }
+                    });
+                    observer.observe(counterSection);
+                }
+
+                // Initialize testimonial carousel
+                let testimonialIndex = 0;
+                const testimonials = document.querySelectorAll('.testimonial-card');
+                
+                if (testimonials.length > 0) {
+                    function showTestimonial(index) {
+                        testimonials.forEach(testimonial => {
+                            testimonial.classList.remove('active');
+                        });
+                        testimonials[index].classList.add('active');
+                        
+                        // Update dots
+                        const dots = document.querySelectorAll('.testimonial-dot');
+                        dots.forEach(dot => dot.classList.remove('active'));
+                        dots[index].classList.add('active');
+                    }
+                    
+                    function nextTestimonial() {
+                        testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+                        showTestimonial(testimonialIndex);
+                    }
+                    
+                    // Create dots
+                    const dotsContainer = document.querySelector('.testimonial-dots');
+                    testimonials.forEach((_, i) => {
+                        const dot = document.createElement('span');
+                        dot.classList.add('testimonial-dot');
+                        if (i === 0) dot.classList.add('active');
+                        dot.addEventListener('click', () => {
+                            testimonialIndex = i;
+                            showTestimonial(i);
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
+                    
+                    // Auto-advance testimonials
+                    setInterval(nextTestimonial, 5000);
+                    
+                    // Initial display
+                    showTestimonial(0);
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-image">
+                <div class="about-hero-overlay"></div>
+            </div>
+            <div class="about-hero-content">
+                <h1>FORGED IN IRON, <span>BUILT ON PASSION</span></h1>
+                <p>Our journey to becoming Boston's premier fitness destination</p>
+            </div>
+        </section>
+
+        <section class="our-story">
+            <div class="section-header">
+                <h2>OUR STORY</h2>
+                <div class="red-line"></div>
+            </div>
+            <div class="story-container">
+                <div class="story-image">
+                    <img src="./photos/our story.png" alt="Iron Forge Beginnings">
+                    <div class="image-caption">Our founder on opening day</div>
+                </div>
+                <div class="story-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>2012</h3>
+                            <h4>THE BEGINNING</h4>
+                            <p>Iron Forge began as a small training studio with just 5 pieces of equipment and a vision to transform fitness culture in Boston.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>2015</h3>
+                            <h4>EXPANSION</h4>
+                            <p>After three years of growth, we expanded to our current 12,000 sq ft facility and introduced 24/7 access for our dedicated members.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>2018</h3>
+                            <h4>AWARD-WINNING</h4>
+                            <p>Iron Forge was recognized as Boston's "Best Boutique Gym" and began hosting competitive lifting events.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>TODAY</h3>
+                            <h4>PREMIUM EXPERIENCE</h4>
+                            <p>Now featuring state-of-the-art equipment, elite training programs, and a thriving community of fitness enthusiasts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="our-philosophy">
+            <div class="philosophy-container">
+                <div class="philosophy-content">
+                    <h2>OUR PHILOSOPHY</h2>
+                    <div class="red-line"></div>
+                    <p class="philosophy-intro">At Iron Forge, we believe fitness is more than just physical transformation—it's about forging strength of character, discipline, and community.</p>
+                    
+                    <div class="philosophy-values">
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h3>INTENSITY</h3>
+                            <p>Every workout should challenge your limits and push you beyond your comfort zone.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>COMMUNITY</h3>
+                            <p>We foster a supportive environment where members motivate each other to achieve greatness.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>INNOVATION</h3>
+                            <p>We constantly evolve our methods and equipment to provide cutting-edge fitness experiences.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3>DEDICATION</h3>
+                            <p>Results come from consistency and unwavering commitment to your goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="meet-the-team">
+            <div class="section-header">
+                <h2>MEET OUR ELITE TRAINERS</h2>
+                <div class="red-line"></div>
+                <p>The strength behind your transformation journey</p>
+            </div>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="./photos/meetourelitetrainers.png" alt="Mike Reynolds">
+                        <div class="member-overlay">
+                            <div class="member-socials">
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>MIKE REYNOLDS</h3>
+                    <h4>HEAD COACH & FOUNDER</h4>
+                    <p>Former competitive powerlifter with 15+ years of coaching experience.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="./photos/nutricao.png" alt="Sarah Collins">
+                        <div class="member-overlay">
+                            <div class="member-socials">
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>SARAH COLLINS</h3>
+                    <h4>NUTRITION & CONDITIONING</h4>
+                    <p>Certified nutritionist specializing in performance-based meal planning.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="./photos/strength specialist.jpeg" alt="James Wilson">
+                        <div class="member-overlay">
+                            <div class="member-socials">
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>JAMES WILSON</h3>
+                    <h4>STRENGTH SPECIALIST</h4>
+                    <p>Championship coach focusing on progressive overload techniques.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="achievements">
+            <div class="achievements-container">
+                <div class="achievement-item">
+                    <div class="counter">
+                        <span class="counter-value" data-count="500">0</span>+
+                    </div>
+                    <h3>ACTIVE MEMBERS</h3>
+                </div>
+                <div class="achievement-item">
+                    <div class="counter">
+                        <span class="counter-value" data-count="15">0</span>
+                    </div>
+                    <h3>CERTIFIED TRAINERS</h3>
+                </div>
+                <div class="achievement-item">
+                    <div class="counter">
+                        <span class="counter-value" data-count="10">0</span>k+
+                    </div>
+                    <h3>TRANSFORMATIONS</h3>
+                </div>
+                <div class="achievement-item">
+                    <div class="counter">
+                        <span class="counter-value" data-count="24">0</span>/7
+                    </div>
+                    <h3>AVAILABILITY</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="facility-gallery">
+            <div class="section-header">
+                <h2>OUR PREMIUM FACILITY</h2>
+                <div class="red-line"></div>
+                <p>State-of-the-art equipment in a motivating environment</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="./photos/weightzone.png" alt="Free Weight Area">
+                    <div class="gallery-caption">
+                        <h3>FREE WEIGHT ZONE</h3>
+                        <p>Professional-grade equipment for serious lifters</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./photos/cardiodeck.jpg" alt="Cardio Area">
+                    <div class="gallery-caption">
+                        <h3>CARDIO DECK</h3>
+                        <p>Latest cardio machines with integrated fitness tracking</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./photos/functional training.jpeg" alt="Functional Training">
+                    <div class="gallery-caption">
+                        <h3>FUNCTIONAL TRAINING</h3>
+                        <p>Dedicated space for dynamic movement training</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./photos/recoveryzone.png" alt="Recovery Zone">
+                    <div class="gallery-caption">
+                        <h3>RECOVERY ZONE</h3>
+                        <p>Advanced recovery equipment to optimize your training</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-header">
+                <h2>MEMBER TESTIMONIALS</h2>
+                <div class="red-line"></div>
+                <p>Real results from real members</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card active">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"Iron Forge transformed not just my physique, but my entire approach to fitness. The trainers push you to your limits in ways you never thought possible."</p>
+                    <div class="testimonial-author">
+                        <h4>DAVID MARTINEZ</h4>
+                        <p>Member for 3 years</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"As a competitive athlete, I needed a gym that understood serious training. Iron Forge delivers with top equipment and knowledgeable staff who know how to push you to the next level."</p>
+                    <div class="testimonial-author">
+                        <h4>JENNIFER TAYLOR</h4>
+                        <p>Member for 2 years</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                    <p>"The 24/7 access and premium equipment make Iron Forge stand out from every other gym I've tried. Worth every penny for serious fitness enthusiasts."</p>
+                    <div class="testimonial-author">
+                        <h4>MICHAEL JOHNSON</h4>
+                        <p>Member for 1 year</p>
+                    </div>
+                </div>
+                <div class="testimonial-dots"></div>
+            </div>
+        </section>
+        
+        <section class="join-cta">
+            <div class="cta-container">
+                <h2>READY TO FORGE YOUR FUTURE?</h2>
+                <p>Join the elite fitness community at Iron Forge today.</p>
+                <a href="services.html#inquiry" class="cta-button">BECOME A MEMBER</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>IRON FORGE</h3>
+                <p>YOUR BEST PLACE</p>
+                <p>118 Beacon St, Boston, MA 02116</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">PRIVACY POLICY</a>
+                <a href="#">FAQ</a>
+                <a href="#">PROMOTION TERMS</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+``` 
